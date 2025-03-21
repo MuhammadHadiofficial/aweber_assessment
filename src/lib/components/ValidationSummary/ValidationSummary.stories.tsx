@@ -2,9 +2,15 @@ import type { Meta, Story } from '@storybook/react';
 import type React from 'react';
 import { useEffect } from 'react';
 
-import { ConfirmPasswordInput } from '@/lib/components';
-import type { ConfirmPasswordInputProps } from '@/lib/components/ConfirmPasswordInput';
+import { ValidationSummary } from '@/lib/components';
 import { PasswordProvider, usePasswordContext } from '@/lib/context/FormContext';
+
+type ValidationSummaryProps = {
+    className?: string;
+    successClassName?: string;
+    errorClassName?: string;
+    successMessage?: string;
+};
 
 // A wrapper component that uses the actual PasswordProvider
 const WithPasswordProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -12,36 +18,35 @@ const WithPasswordProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 );
 
 // Story variant that uses the real provider in its default state.
-const DefaultTemplate: Story<ConfirmPasswordInputProps> = args => (
+const DefaultTemplate: Story<ValidationSummaryProps> = args => (
     <WithPasswordProvider>
-        <ConfirmPasswordInput {...args} />
+        <ValidationSummary {...args} />
     </WithPasswordProvider>
 );
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
-    label: 'Confirm Password',
-    placeholder: 'Confirm password',
-    showErrors: true,
+    className: '',
+    successClassName: 'bg-green-100 text-green-800',
+    errorClassName: 'bg-red-100 text-red-800',
+    successMessage: 'Password is valid!',
 };
 
 // To simulate the error state, we create a component that sets mismatched passwords
 const ErrorStateWrapper: React.FC = () => {
-    // Access context actions
     const { setPassword, setConfirmPassword, handleBlur } = usePasswordContext();
 
     useEffect(() => {
-        // Set the password and a non-matching confirm password
-        setPassword('password123');
+        // Set an invalid password (e.g., no special characters or numbers)
+        setPassword('password'); // Invalid password
         setConfirmPassword('differentPassword');
-        // Mark confirmPassword as touched so the error will display
-        handleBlur('confirmPassword');
+        handleBlur('confirmPassword'); // Mark confirm password as touched so the error will display
     }, [setPassword, setConfirmPassword, handleBlur]);
 
-    return <ConfirmPasswordInput />;
+    return <ValidationSummary />;
 };
 
-const ErrorTemplate: Story<ConfirmPasswordInputProps> = args => (
+const ErrorTemplate: Story<ValidationSummaryProps> = args => (
     <WithPasswordProvider>
         <ErrorStateWrapper />
     </WithPasswordProvider>
@@ -49,12 +54,13 @@ const ErrorTemplate: Story<ConfirmPasswordInputProps> = args => (
 
 export const WithError = ErrorTemplate.bind({});
 WithError.args = {
-    label: 'Confirm Password',
-    placeholder: 'Confirm password',
-    showErrors: true,
+    className: '',
+    successClassName: 'bg-green-100 text-green-800',
+    errorClassName: 'bg-red-100 text-red-800',
+    successMessage: 'Password is valid!',
 };
 
 export default {
-    title: 'Components/ConfirmPasswordInput',
-    component: ConfirmPasswordInput,
+    title: 'Components/ValidationSummary',
+    component: ValidationSummary,
 } as Meta;

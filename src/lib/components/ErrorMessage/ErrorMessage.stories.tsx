@@ -1,5 +1,4 @@
 import type { Meta, Story } from '@storybook/react';
-import React from 'react';
 
 import type { ErrorMessagesProps } from '@/lib/components/ErrorMessage';
 import ErrorMessages from '@/lib/components/ErrorMessage';

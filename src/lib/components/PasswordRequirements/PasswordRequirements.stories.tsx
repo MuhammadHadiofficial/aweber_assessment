@@ -1,7 +1,9 @@
 import type { Meta, Story } from '@storybook/react';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import React from 'react';
 
-import type { PasswordRequirementsProps } from '@/lib/components/PasswordRequirements';
-import { PasswordRequirements } from '@/lib/components/PasswordRequirements';
+import type { PasswordRequirementsProps } from '@/lib/components';
+import { PasswordRequirements } from '@/lib/components';
 import { PasswordProvider } from '@/lib/context/FormContext'; // Import the original PasswordProvider
 
 export default {
@@ -11,7 +13,7 @@ export default {
 
 // Template for PasswordRequirements component
 const Template: Story<PasswordRequirementsProps> = args => (
-    <PasswordProvider>
+    <PasswordProvider initialValues={{ initialPassword: 'TestPassword123', initialConfirmPassword: 'TestPassword123' }}>
         <PasswordRequirements {...args} />
     </PasswordProvider>
 );
@@ -47,7 +49,9 @@ WithMinLengthOnly.args = {
 };
 WithMinLengthOnly.decorators = [
     Story => (
-        <PasswordProvider>
+        <PasswordProvider
+            initialValues={{ initialPassword: 'TestPassword123', initialConfirmPassword: 'TestPassword123' }}
+        >
             {/* Override the rules to show only minLength */}
             <Story />
         </PasswordProvider>
@@ -65,7 +69,9 @@ WithSpecialCharOnly.args = {
 };
 WithSpecialCharOnly.decorators = [
     Story => (
-        <PasswordProvider>
+        <PasswordProvider
+            initialValues={{ initialPassword: 'TestPassword123', initialConfirmPassword: 'TestPassword123' }}
+        >
             {/* Override the rules to show only specialChar */}
             <Story />
         </PasswordProvider>

@@ -1,17 +1,7 @@
-[![CI](https://github.com/morewings/react-library-template/actions/workflows/merge-jobs.yml/badge.svg)](https://github.com/morewings/react-library-template/actions/workflows/merge-jobs.yml)
-[![Storybook deploy](https://github.com/morewings/react-library-template/actions/workflows/pages.yml/badge.svg)](https://github.com/morewings/react-library-template/actions/workflows/pages.yml)
-[![Use this template](https://img.shields.io/badge/use%20this-template-blue?logo=githu)](https://github.com/morewings/react-library-template/generate)
+[![CI](https://github.com/morewings/react-library-template/actions/workflows/merge-jobs.yml/badge.svg)](https://github.com/MuhammadHadiofficial/aweber_assessment/actions/workflows/merge-jobs.yml)
+[![Storybook deploy](https://github.com/morewings/react-library-template/actions/workflows/pages.yml/badge.svg)](https://github.com/MuhammadHadiofficial/aweber_assessment/actions/workflows/pages.yml)
 
-# React Library Template
-
-
-[![NPM library Create React App template logo](./design/logo.jpg)](#)
-
-With React Library Template Repository, you can focus on developing your React components and libraries without worrying about the configuration and setup.
-
-Read [full documentation](https://dev.to/morewings/fastest-way-to-create-a-react-library-3mi7).
-
-Visit [Demo Storybook](https://morewings.github.io/react-library-template/).
+# AWeber Password Validation Assessment
 
 ## Features
 
@@ -40,14 +30,34 @@ Manually clone repo or use `degit`.
 
 ```shell script
 # With CSS Modules config
-npx degit github:morewings/react-library-template my-library
-# With Tailwind CSS config
-npx degit github:morewings/react-library-template#tailwind my-library
+git clone git@github.com:MuhammadHadiofficial/aweber_assessment.git
 cd ./my-library
 pnpm i
 ```
 
+DEV SERVER
+```
+pnpm run dev
 
-## Enable Tailwind CSS
+```
+Storybook
 
-You can find all changes at this [PR](https://github.com/morewings/react-library-template/pull/161) and [tailwind](https://github.com/morewings/react-library-template/tree/tailwind) branch.
+```
+pnpm run start:docs
+```
+T
+
+
+## Implementation Thought Process
+![image](https://github.com/user-attachments/assets/5adf8026-8fa6-4fc5-982b-0a5a0fddecda)
+
+- I followed how Formik handles forms
+- Created a context shared between form components
+- Track states, like touched, blur, changed etc.
+- Validation rules and error messages are pluggable during initialization
+- A validation summary component is added
+- There are 4 Examples in this project
+  -  Example 1: Ready to use single PasswordForm container plug it in your existing form and pass a callback to extract password and password validation state to integrate with existing external form
+  -  Example 2: Password form with seperate password and confirm password input, it shows how each component alone can be utilized, we offer other components like **validation summary, submit button, Requirements, and password strength meter**
+  - Example 3: Shows Live validation meaning as you type it validates password. Showing how flexible our library is to use
+  - Example 4: We show a full form example showing how our password validation form library can be integrated with any form component or library flexibly. WE show a customer signup form with name, email and password component.

@@ -11,19 +11,19 @@ export const Example4 = () => {
     });
     // Get password context reference
     const passwordRef = React.useRef<ReturnType<typeof usePasswordContext> | null>(null);
-    const handleFormSubmit = () => {
-        // e.preventDefault();
+    const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
         // Validate password first
         const isPasswordValid = passwordRef.current?.handleSubmit?.() ?? false;
-
+        console.log('isPasswordValid:', isPasswordValid);
         if (isPasswordValid) {
             // Submit the entire form with all data
             const completeData = {
                 ...formData,
                 password: passwordRef.current?.password,
             };
-
+            alert('Form submitted! Check console for data.');
             console.log('Submitting complete form:', completeData);
         }
     };

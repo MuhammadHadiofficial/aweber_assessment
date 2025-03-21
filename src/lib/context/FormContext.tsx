@@ -118,6 +118,7 @@ export const PasswordProvider = ({
         if (isValid && onValidSubmit) {
             onValidSubmit(password);
         }
+
         return isValid;
     }, [password, validateCurrentPassword, onValidSubmit]);
 

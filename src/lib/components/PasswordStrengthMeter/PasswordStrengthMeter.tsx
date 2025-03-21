@@ -7,7 +7,10 @@ type PasswordStrengthMeterProps = {
     labelClassName?: string;
 };
 
-export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({ className = '', labelClassName = '' }) => {
+export const PasswordStrengthMeter: React.FC<PasswordStrengthMeterProps> = ({
+    className = '',
+    labelClassName = '',
+}) => {
     const { password, rules } = usePasswordContext();
 
     // Calculate strength score (0-100)

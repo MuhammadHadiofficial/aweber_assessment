@@ -1,3 +1,3 @@
-import "./index.css";
+import './index.css';
 
-export { Example1 } from "@/lib/examples/Example1";
+export { Example1 } from '@/lib/examples/Example1';

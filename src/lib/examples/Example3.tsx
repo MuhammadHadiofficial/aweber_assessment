@@ -26,8 +26,10 @@ const LiveValidationForm = () => {
                     {criteria.map(({ key, label }) => (
                         <li
                             key={key}
-                            className={`flex items-center text-sm ${validation.errors[key] ? 'text-red-600' : 'text-green-600'
-                                }`}>
+                            className={`flex items-center text-sm ${
+                                validation.errors[key] ? 'text-red-600' : 'text-green-600'
+                            }`}
+                        >
                             <span className="mr-2">{validation.errors[key] ? '✗' : '✓'}</span>
                             {label}
                         </li>

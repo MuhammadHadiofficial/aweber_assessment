@@ -20,8 +20,10 @@ export const SubmitButton: React.FC<SubmitButtonProps> = ({
             type="submit"
             disabled={disableWhenInvalid && !validation.isValid}
             onClick={handleSubmit}
-            className={`w-full rounded-md bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${disableWhenInvalid && !validation.isValid ? 'cursor-not-allowed opacity-50' : ''
-                } ${className}`}>
+            className={`w-full rounded-md bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                disableWhenInvalid && !validation.isValid ? 'cursor-not-allowed opacity-50' : ''
+            } ${className}`}
+        >
             {text}
         </button>
     );

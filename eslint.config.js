@@ -99,7 +99,7 @@ export default [
           jsxSingleQuote: false,
           trailingComma: 'es5',
           bracketSpacing: true,
-          jsxBracketSameLine: true,
+          jsxBracketSameLine: false,
           arrowParens: 'avoid',
         },
       ],

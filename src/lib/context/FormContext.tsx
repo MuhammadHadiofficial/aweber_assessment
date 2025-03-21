@@ -1,4 +1,3 @@
-import type React from 'react';
 import type { ReactNode } from 'react';
 import { createContext, useCallback, useContext, useState } from 'react';
 
@@ -20,7 +19,7 @@ export type PasswordContextType = {
     setConfirmPassword: (newConfirmPassword: string) => void; // Sets the confirm password state
     handleBlur: (field: 'password' | 'confirmPassword') => void; // Handles blur events for fields
     validatePassword: (newPassword?: string, newConfirmPassword?: string) => boolean; // Validates the password and confirm password
-    handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => boolean; // Handles form submission
+    handleSubmit: (e?: React.MouseEventHandler<HTMLButtonElement> | undefined) => boolean; // Handles form submission
     resetForm: () => void; // Resets the form state
 };
 
@@ -40,13 +39,22 @@ type PasswordProviderProps = {
     children: ReactNode;
     initialRules?: Partial<PasswordRules>;
     onValidSubmit?: (password: string) => void;
+    initialValues?: {
+        initialPassword?: string;
+        initialConfirmPassword?: string;
+    };
 };
 
-// Provider component
-export const PasswordProvider = ({ children, initialRules = {}, onValidSubmit = () => { } }: PasswordProviderProps) => {
-    // State
-    const [password, setPasswordState] = useState<string>('');
-    const [confirmPassword, setConfirmPasswordState] = useState<string>('');
+export const PasswordProvider = ({
+    children,
+    initialRules = {},
+    onValidSubmit = () => {},
+    initialValues = {},
+}: PasswordProviderProps) => {
+    const { initialPassword = '', initialConfirmPassword = '' } = initialValues;
+
+    const [password, setPasswordState] = useState<string>(initialPassword);
+    const [confirmPassword, setConfirmPasswordState] = useState<string>(initialConfirmPassword);
     const [touched, setTouched] = useState<{ password: boolean; confirmPassword: boolean }>({
         password: false,
         confirmPassword: false,
@@ -100,24 +108,18 @@ export const PasswordProvider = ({ children, initialRules = {}, onValidSubmit = 
     }, []);
 
     // Handle form submission
-    const handleSubmit = useCallback(
-        (e?: React.FormEvent<HTMLFormElement>): boolean => {
-            if (e) e.preventDefault();
+    const handleSubmit = useCallback(() => {
+        // Mark all fields as touched
+        setTouched({ password: true, confirmPassword: true });
+        setSubmitted(true);
 
-            // Mark all fields as touched
-            setTouched({ password: true, confirmPassword: true });
-            setSubmitted(true);
+        const isValid = validateCurrentPassword();
 
-            const isValid = validateCurrentPassword();
-
-            if (isValid && onValidSubmit) {
-                onValidSubmit(password);
-            }
-
-            return isValid;
-        },
-        [password, validateCurrentPassword, onValidSubmit]
-    );
+        if (isValid && onValidSubmit) {
+            onValidSubmit(password);
+        }
+        return isValid;
+    }, [password, validateCurrentPassword, onValidSubmit]);
 
     // Context value
     const value: PasswordContextType = {
@@ -130,7 +132,6 @@ export const PasswordProvider = ({ children, initialRules = {}, onValidSubmit = 
         submitted,
         rules,
 
-        // Actions
         setPassword: handlePasswordChange,
         setConfirmPassword: handleConfirmPasswordChange,
         handleBlur,

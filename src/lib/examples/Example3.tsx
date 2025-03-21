@@ -1,5 +1,6 @@
 import { ConfirmPasswordInput, PasswordInput, SubmitButton } from '@/lib/components';
-import { PasswordProvider, usePasswordContext } from '@/lib/context/FormContext';
+import { PasswordProvider } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 const LiveValidationForm = () => {
     const handleSubmit = (password: string) => {
         console.log('Form submitted with password:', password);

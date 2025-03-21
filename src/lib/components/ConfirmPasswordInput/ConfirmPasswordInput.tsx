@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { usePasswordContext } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 
 // Confirm Password Input Field
 export type ConfirmPasswordInputProps = {

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { createContext, useCallback, useContext, useState } from 'react';
+import { createContext, useCallback, useState } from 'react';
 
 import type { PasswordRules, ValidationResult } from '../utils';
 import { defaultPasswordRules, validatePassword } from '../utils';
@@ -24,16 +24,7 @@ export type PasswordContextType = {
 };
 
 // Create the context
-const PasswordContext = createContext<PasswordContextType | undefined>(undefined);
-
-// Custom hook to use the password context
-export const usePasswordContext = (): PasswordContextType => {
-    const context = useContext(PasswordContext);
-    if (!context) {
-        throw new Error('usePasswordContext must be used within a PasswordProvider');
-    }
-    return context;
-};
+export const PasswordContext = createContext<PasswordContextType | undefined>(undefined);
 
 type PasswordProviderProps = {
     children: ReactNode;

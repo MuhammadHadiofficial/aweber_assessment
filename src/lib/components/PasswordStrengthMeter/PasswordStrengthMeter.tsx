@@ -1,6 +1,6 @@
 import type React from 'react';
 
-import { usePasswordContext } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 
 type PasswordStrengthMeterProps = {
     className?: string;

@@ -4,7 +4,8 @@ import { useEffect } from 'react';
 
 import { ConfirmPasswordInput } from '@/lib/components';
 import type { ConfirmPasswordInputProps } from '@/lib/components/ConfirmPasswordInput';
-import { PasswordProvider, usePasswordContext } from '@/lib/context/FormContext';
+import { PasswordProvider } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 
 // A wrapper component that uses the actual PasswordProvider
 const WithPasswordProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => (

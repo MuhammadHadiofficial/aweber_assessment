@@ -3,7 +3,8 @@ import type React from 'react';
 import { useEffect } from 'react';
 
 import { ValidationSummary } from '@/lib/components';
-import { PasswordProvider, usePasswordContext } from '@/lib/context/FormContext';
+import { PasswordProvider } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 
 type ValidationSummaryProps = {
     className?: string;

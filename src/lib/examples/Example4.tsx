@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import { ConfirmPasswordInput, PasswordInput, PasswordStrengthMeter } from '@/lib/components';
-import { PasswordProvider, usePasswordContext } from '@/lib/context/FormContext';
+import { PasswordProvider } from '@/lib/context/FormContext';
+import { usePasswordContext } from '@/lib/hooks';
 
 export const Example4 = () => {
     const [formData, setFormData] = useState({

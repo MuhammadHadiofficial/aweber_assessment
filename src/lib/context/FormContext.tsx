@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { createContext, useCallback, useState } from 'react';
 
-import type { PasswordRules, ValidationResult } from '../utils';
-import { defaultPasswordRules, validatePassword } from '../utils';
+import type { PasswordRules, ValidationResult } from '@/lib/types';
+import { defaultPasswordRules, validatePassword } from '@/lib/utils';
 
 export type PasswordContextType = {
     // State

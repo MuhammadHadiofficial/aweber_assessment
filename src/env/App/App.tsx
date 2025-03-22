@@ -1,7 +1,7 @@
 import type { FC } from 'react';
+import './index.css';
 
 import { Example4 } from '@/lib/examples/Example4';
-import './index.css';
 
 const App: FC = () => {
     return <Example4 />;
